@@ -13,6 +13,7 @@
 		B4F2528522846806002B9107 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4F2528322846806002B9107 /* LaunchScreen.storyboard */; };
 		B4F2528D228470B8002B9107 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2528C228470B8002B9107 /* PhotoManager.swift */; };
 		B4F2528F2284829A002B9107 /* AlbumsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2528E2284829A002B9107 /* AlbumsCollectionViewController.swift */; };
+		B4F252932284C844002B9107 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F252922284C844002B9107 /* PhotoDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B4F2528622846806002B9107 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4F2528C228470B8002B9107 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		B4F2528E2284829A002B9107 /* AlbumsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsCollectionViewController.swift; sourceTree = "<group>"; };
+		B4F252922284C844002B9107 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				B4F2527A22846802002B9107 /* AppDelegate.swift */,
 				B4F2528C228470B8002B9107 /* PhotoManager.swift */,
 				B4F2528E2284829A002B9107 /* AlbumsCollectionViewController.swift */,
+				B4F252922284C844002B9107 /* PhotoDetailViewController.swift */,
 				B4F2527E22846803002B9107 /* Main.storyboard */,
 				B4F2528122846806002B9107 /* Assets.xcassets */,
 				B4F2528322846806002B9107 /* LaunchScreen.storyboard */,
@@ -140,6 +143,7 @@
 			files = (
 				B4F2528D228470B8002B9107 /* PhotoManager.swift in Sources */,
 				B4F2527B22846802002B9107 /* AppDelegate.swift in Sources */,
+				B4F252932284C844002B9107 /* PhotoDetailViewController.swift in Sources */,
 				B4F2528F2284829A002B9107 /* AlbumsCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
