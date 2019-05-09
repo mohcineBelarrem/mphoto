@@ -19,6 +19,8 @@ class PhotoCollectionCell : UICollectionViewCell {
 private let reuseIdentifier = "Cell"
 
 class AlbumsCollectionViewController: UICollectionViewController {
+    
+    var selectedPhoto : Photo!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +79,20 @@ class AlbumsCollectionViewController: UICollectionViewController {
         
         }
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        selectedPhoto = PhotoManager.shared.photos("\(indexPath.section)")[indexPath.row]
+        self.performSegue(withIdentifier: "showPhotoDetail", sender: nil)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showPhotoDetail" {
+            let dest = segue.destination as! PhotoDetailViewController
+            dest.photo = selectedPhoto
+        }
     }
     
     // MARK: UICollectionViewDelegate
