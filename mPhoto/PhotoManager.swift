@@ -24,6 +24,13 @@ final class PhotoManager {
     
     private var photosDictionary: [String:[Photo]] = [:]
 
+    func albums () -> [String] {
+        return Array(photosDictionary.keys)
+    }
+    
+    func photos (_ albumId : String) -> [Photo] {
+        return photosDictionary[albumId] ?? [Photo]()
+    }
     
     func addPhoto(_ photo: Photo) {
         
@@ -40,6 +47,10 @@ final class PhotoManager {
     }
     
     func getPhotosData() {
+        
+        //Backup url for low size data
+        //https://my-json-server.typicode.com/mohcinebelarrem/photosdb/photos
+        
         let stringUrl = "https://jsonplaceholder.typicode.com/photos"
         guard let Url = URL(string: stringUrl) else {
             return
@@ -54,7 +65,9 @@ final class PhotoManager {
                     self?.addPhoto(photo)
                 }
                 
-                self?.printAlbums()
+                let notification = Notification(name: Notification.Name("dataReady"))
+                
+                NotificationCenter.default.post(notification)
                 
             } catch {
                 print("Something Went wrong while parsing data.")
