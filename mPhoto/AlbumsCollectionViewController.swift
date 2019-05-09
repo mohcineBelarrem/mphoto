@@ -8,6 +8,14 @@
 
 import UIKit
 
+
+class PhotoCollectionCell : UICollectionViewCell {
+    
+    
+    @IBOutlet weak var imageView: UIImageView!
+}
+
+
 private let reuseIdentifier = "Cell"
 
 class AlbumsCollectionViewController: UICollectionViewController {
@@ -15,13 +23,14 @@ class AlbumsCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
+       
         // Do any additional setup after loading the view.
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(dataReady), name:Notification.Name("dataReady") , object: nil)
     }
 
     /*
@@ -38,23 +47,38 @@ class AlbumsCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return PhotoManager.shared.albums().count
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return PhotoManager.shared.photos("\(section)").count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCollectionCell
     
-        // Configure the cell
+        
+        DispatchQueue.global().async {
+            
+        let photo = PhotoManager.shared.photos("\(indexPath.section)")[indexPath.row]
     
+        let url = URL(string:photo.thumbnailUrl)
+        //print(url?.absoluteString)
+            
+        if let imageData = try? Data.init(contentsOf: url!),
+            let image = UIImage(data: imageData)  {
+            
+            DispatchQueue.main.async {
+            cell.imageView.image = image
+            }
+        }
+        
+        }
         return cell
     }
-
+    
     // MARK: UICollectionViewDelegate
 
     /*
@@ -85,5 +109,12 @@ class AlbumsCollectionViewController: UICollectionViewController {
     
     }
     */
+    
+    @objc func dataReady() {
+        
+        DispatchQueue.main.async {
+        self.collectionView.reloadData()
+        }
+    }
 
 }
