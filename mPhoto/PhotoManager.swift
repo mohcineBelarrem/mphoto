@@ -17,3 +17,62 @@ struct Photo : Decodable {
     let thumbnailUrl : String
     
 }
+
+final class PhotoManager {
+    private init() {}
+    static let shared = PhotoManager()
+    
+    private var photosDictionary: [String:[Photo]] = [:]
+
+    
+    func addPhoto(_ photo: Photo) {
+        
+        let albumID = "\(photo.albumId)"
+        
+        if photosDictionary.keys.contains(albumID) {
+            var photosArray = photosDictionary[albumID]
+            photosArray?.append(photo)
+            photosDictionary[albumID] = photosArray
+        } else {
+            photosDictionary[albumID] = [photo]
+        }
+        
+    }
+    
+    func getPhotosData() {
+        let stringUrl = "https://jsonplaceholder.typicode.com/photos"
+        guard let Url = URL(string: stringUrl) else {
+            return
+        }
+        
+        URLSession.shared.dataTask(with: Url) {[weak self] (data,response,error) in
+            
+            do {
+                
+                let photos = try JSONDecoder().decode([Photo].self, from: data!)
+                for photo in photos {
+                    self?.addPhoto(photo)
+                }
+                
+                self?.printAlbums()
+                
+            } catch {
+                print("Something Went wrong while parsing data.")
+            }
+            
+            }.resume()
+    }
+    
+    
+    func printAlbums() {
+        
+        for albumId in photosDictionary.keys {
+            
+            let array = photosDictionary[albumId]
+            
+            print("\(albumId) \(array!.count)")
+            
+        }
+    }
+    
+}
