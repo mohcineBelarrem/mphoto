@@ -68,9 +68,9 @@ class AlbumsCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        selectedAlbum = PhotoManager.shared.photos("\(indexPath.section)")
+        let albumID =   PhotoManager.shared.albums()[indexPath.section]
+        selectedAlbum = PhotoManager.shared.photos("\(albumID)")
         
-        let albumID = PhotoManager.shared.albums()[indexPath.section]
         selectedTitle = "Album \(albumID)"
         
         self.performSegue(withIdentifier: "showPhotos", sender: nil)
