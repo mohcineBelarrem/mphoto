@@ -32,13 +32,13 @@ class AlbumsCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return PhotoManager.shared.albums().count
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 1
+        return PhotoManager.shared.albums().count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -47,8 +47,8 @@ class AlbumsCollectionViewController: UICollectionViewController {
         
         DispatchQueue.global().async {
         
-        let albumID = PhotoManager.shared.albums()[indexPath.section]
-        let photo = PhotoManager.shared.photos(albumID)[indexPath.row]
+        let albumID = PhotoManager.shared.albums()[indexPath.row]
+        let photo = PhotoManager.shared.photos(albumID)[indexPath.section]
     
         let url = URL(string:photo.thumbnailUrl)
             
@@ -68,7 +68,7 @@ class AlbumsCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let albumID =   PhotoManager.shared.albums()[indexPath.section]
+        let albumID =   PhotoManager.shared.albums()[indexPath.row]
         selectedAlbum = PhotoManager.shared.photos("\(albumID)")
         
         selectedTitle = "Album \(albumID)"
