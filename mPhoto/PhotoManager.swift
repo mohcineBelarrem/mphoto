@@ -48,10 +48,11 @@ final class PhotoManager {
     
     func getPhotosData() {
         
-        //Backup url for low size data
-        //https://my-json-server.typicode.com/mohcinebelarrem/photosdb/photos
+        //Original Data 100 Albums 50 photos each
+        //https://jsonplaceholder.typicode.com/photos
         
-        let stringUrl = "https://jsonplaceholder.typicode.com/photos"
+        //Irregular Data to make things less boring
+        let stringUrl = "https://raw.githubusercontent.com/mohcineBelarrem/photosdb/master/db.json"
         guard let Url = URL(string: stringUrl) else {
             return
         }
