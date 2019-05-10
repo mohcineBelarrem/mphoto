@@ -13,6 +13,7 @@ private let reuseIdentifier = "photoCell"
 
 class PhotoCollectionCell : UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
 }
 
@@ -39,6 +40,11 @@ class PhotosCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCollectionCell
         
+        DispatchQueue.main.async {
+            cell.activityIndicator.startAnimating()
+            cell.imageView.isHidden = true
+            cell.activityIndicator.isHidden = false
+        }
         
         DispatchQueue.global().async {
             
@@ -51,6 +57,9 @@ class PhotosCollectionViewController: UICollectionViewController {
                 
                 DispatchQueue.main.async {
                     cell.imageView.image = image
+                    cell.activityIndicator.stopAnimating()
+                    cell.imageView.isHidden = false
+                    cell.activityIndicator.isHidden = true
                 }
             }
             
