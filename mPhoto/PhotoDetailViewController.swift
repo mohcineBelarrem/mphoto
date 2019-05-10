@@ -18,24 +18,10 @@ class PhotoDetailViewController: UIViewController {
     public var album : [Photo]!
     public var currentIndex : Int!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        photoDetailLabel.isHidden = true
-
+    fileprivate func showPhotoAtCurrentIndex() {
         let photo = album[currentIndex]
-        
         self.title = "\(photo.id)"
-        
         let url = URL(string:photo.url)
-        
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
-        swipeUp.direction = .up
-        self.view.addGestureRecognizer(swipeUp)
-        
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
-        swipeDown.direction = .down
-        self.view.addGestureRecognizer(swipeDown)
         
         DispatchQueue.global().async {
             
@@ -49,6 +35,30 @@ class PhotoDetailViewController: UIViewController {
             }
             
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        photoDetailLabel.isHidden = true
+
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
+        swipeUp.direction = .up
+        self.view.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
+        swipeDown.direction = .down
+        self.view.addGestureRecognizer(swipeDown)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        showPhotoAtCurrentIndex()
         
     }
     
@@ -59,9 +69,27 @@ class PhotoDetailViewController: UIViewController {
             hideShowDetailLabel(true)
         case .down:
              hideShowDetailLabel(false)
+        case .left:
+            showNextPreviousImage(true)
+        case .right:
+            showNextPreviousImage(false)
         default:
             return
         }
+        
+    }
+    
+    func showNextPreviousImage(_ next: Bool){
+        
+        let newIndex = currentIndex + ( next ? 1 : -1)
+        
+        if newIndex < 0 || newIndex >= album.count {
+            return
+        } else {
+            currentIndex = newIndex
+        }
+        
+        self.showPhotoAtCurrentIndex()
         
     }
     
