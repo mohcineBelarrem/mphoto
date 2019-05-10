@@ -75,12 +75,63 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Albums" id="CI1-xl-4JD"/>
                     <connections>
-                        <segue destination="ivP-gM-zhM" kind="show" identifier="showPhotoDetail" id="85p-Cj-xae"/>
+                        <segue destination="SA3-D1-UjC" kind="show" identifier="showPhotos" id="spS-cf-tc6"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kt4-rD-H0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="697.10144927536237" y="-8.0357142857142847"/>
+            <point key="canvasLocation" x="699" y="-12"/>
+        </scene>
+        <!--Photos-->
+        <scene sceneID="m1v-ma-YVc">
+            <objects>
+                <collectionViewController id="SA3-D1-UjC" userLabel="Photos" customClass="PhotosCollectionViewController" customModule="mPhoto" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="DFz-SZ-faf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zIS-4r-lxR">
+                            <size key="itemSize" width="79" height="85"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="dUH-Cf-9Kl" customClass="PhotoCollectionCell" customModule="mPhoto" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="79" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="79" height="85"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sEI-y5-zO0">
+                                            <rect key="frame" x="0.0" y="0.0" width="79" height="85"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="sEI-y5-zO0" secondAttribute="bottom" id="7iW-xt-dui"/>
+                                    <constraint firstAttribute="trailing" secondItem="sEI-y5-zO0" secondAttribute="trailing" id="IfU-B5-xiG"/>
+                                    <constraint firstItem="sEI-y5-zO0" firstAttribute="leading" secondItem="dUH-Cf-9Kl" secondAttribute="leading" id="nsf-DJ-zDj"/>
+                                    <constraint firstItem="sEI-y5-zO0" firstAttribute="top" secondItem="dUH-Cf-9Kl" secondAttribute="top" id="z2m-Yp-AUc"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="sEI-y5-zO0" id="BGm-1C-Lwj"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="SA3-D1-UjC" id="27h-9M-fNS"/>
+                            <outlet property="delegate" destination="SA3-D1-UjC" id="L7K-ey-r6w"/>
+                        </connections>
+                    </collectionView>
+                    <connections>
+                        <segue destination="ivP-gM-zhM" kind="show" identifier="showPhotoDetail" id="TPB-Sh-8Zi"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c9E-cC-aPf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1579.7101449275362" y="-12.053571428571429"/>
         </scene>
         <!--Photo Detail-->
         <scene sceneID="joQ-aB-SnM">
@@ -109,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egP-wW-iXw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1595.6521739130435" y="-8.0357142857142847"/>
+            <point key="canvasLocation" x="2397" y="-12"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tQ8-RT-cvc">
@@ -127,7 +178,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Qr-BL-jJc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-213.04347826086959" y="-8.0357142857142847"/>
+            <point key="canvasLocation" x="-213" y="-12"/>
         </scene>
     </scenes>
 </document>
