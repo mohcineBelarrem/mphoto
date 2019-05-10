@@ -10,13 +10,14 @@ import UIKit
 
 class PhotoDetailViewController: UIViewController {
     @IBOutlet weak var imageVIew: UIImageView!
+    @IBOutlet weak var photoDetailLabel: UILabel!
     
     public var photo : Photo!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.title = "\(photo.id)"
         
         let url = URL(string:self.photo.url)
         
@@ -27,6 +28,7 @@ class PhotoDetailViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     self.imageVIew.image = image
+                    self.photoDetailLabel.text = self.photo.title
                 }
             }
             
