@@ -162,12 +162,18 @@
                                     <constraint firstItem="4Od-uG-U0e" firstAttribute="top" secondItem="3Ze-uh-N48" secondAttribute="top" constant="8" id="uuS-aC-Hb8"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="aVj-wJ-JAW">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" red="0.54262384360000004" green="0.28305008189999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="j5g-n9-IPZ" firstAttribute="top" secondItem="Ybo-qB-3N0" secondAttribute="top" id="3gZ-qL-esv"/>
                             <constraint firstItem="3Ze-uh-N48" firstAttribute="bottom" secondItem="Ybo-qB-3N0" secondAttribute="bottom" id="9Fb-E5-NXI"/>
                             <constraint firstItem="3Ze-uh-N48" firstAttribute="trailing" secondItem="Ybo-qB-3N0" secondAttribute="trailing" id="CXP-4b-jnK"/>
+                            <constraint firstItem="aVj-wJ-JAW" firstAttribute="centerX" secondItem="WEH-ux-rPW" secondAttribute="centerX" id="DQQ-5K-kHX"/>
+                            <constraint firstItem="aVj-wJ-JAW" firstAttribute="centerY" secondItem="WEH-ux-rPW" secondAttribute="centerY" id="HAT-NG-s9A"/>
                             <constraint firstItem="j5g-n9-IPZ" firstAttribute="trailing" secondItem="Ybo-qB-3N0" secondAttribute="trailing" id="I69-Te-yLR"/>
                             <constraint firstItem="3Ze-uh-N48" firstAttribute="leading" secondItem="Ybo-qB-3N0" secondAttribute="leading" id="Onv-Tx-pSm"/>
                             <constraint firstItem="j5g-n9-IPZ" firstAttribute="leading" secondItem="Ybo-qB-3N0" secondAttribute="leading" id="ST1-0K-V2Q"/>
@@ -177,6 +183,8 @@
                         <viewLayoutGuide key="safeArea" id="Ybo-qB-3N0"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="aVj-wJ-JAW" id="hR9-Jo-8GW"/>
+                        <outlet property="activityIndicatorYConstraint" destination="HAT-NG-s9A" id="Jao-lK-Z3H"/>
                         <outlet property="detailViewHeightConstraint" destination="qft-CV-D1m" id="HB0-n4-z5A"/>
                         <outlet property="imageVIew" destination="j5g-n9-IPZ" id="DG3-yV-m2x"/>
                         <outlet property="photoDetailLabel" destination="4Od-uG-U0e" id="68o-dZ-foD"/>

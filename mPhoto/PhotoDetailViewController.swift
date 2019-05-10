@@ -13,6 +13,8 @@ class PhotoDetailViewController: UIViewController {
     @IBOutlet weak var photoDetailLabel: UILabel!
     @IBOutlet weak var detailViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var activityIndicatorYConstraint: NSLayoutConstraint!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     //public var photo : Photo!
     
     public var album : [Photo]!
@@ -25,12 +27,21 @@ class PhotoDetailViewController: UIViewController {
         
         DispatchQueue.global().async {
             
+            DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+            self.imageVIew.isHidden = true
+            self.activityIndicator.isHidden = false
+            }
+                
             if let imageData = try? Data.init(contentsOf: url!),
                 let image = UIImage(data: imageData)  {
                 
                 DispatchQueue.main.async {
                     self.imageVIew.image = image
                     self.photoDetailLabel.text = photo.title
+                    self.activityIndicator.stopAnimating()
+                    self.imageVIew.isHidden = false
+                    self.activityIndicator.isHidden = true
                 }
             }
             
@@ -99,6 +110,7 @@ class PhotoDetailViewController: UIViewController {
             self.photoDetailLabel.isHidden = !show
             let height = self.view.frame.height
             self.detailViewHeightConstraint.constant = show ? 0.5 * height : 0.02 * height
+            self.activityIndicatorYConstraint.constant = show ? -0.25 * height : 0
             self.view.layoutIfNeeded()
         }
     }
