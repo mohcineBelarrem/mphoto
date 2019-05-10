@@ -48,6 +48,10 @@ final class PhotoManager {
     
     func getPhotosData() {
         
+        if !photosDictionary.isEmpty {
+            photosDictionary.removeAll(keepingCapacity: false)
+        }
+        
         //Original Data 100 Albums 50 photos each
         //https://jsonplaceholder.typicode.com/photos
         
