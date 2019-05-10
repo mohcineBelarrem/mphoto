@@ -25,7 +25,7 @@ final class PhotoManager {
     private var photosDictionary: [String:[Photo]] = [:]
 
     func albums () -> [String] {
-        return Array(photosDictionary.keys)
+        return Array(photosDictionary.keys).sorted{$0.localizedStandardCompare($1) == .orderedAscending}
     }
     
     func photos (_ albumId : String) -> [Photo] {
