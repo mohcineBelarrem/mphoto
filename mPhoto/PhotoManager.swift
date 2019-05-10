@@ -61,7 +61,7 @@ final class PhotoManager {
             
             do {
                 
-                let photos = try JSONDecoder().decode([Photo].self, from: data!)
+                let photos = try JSONDecoder().decode([Photo].self, from: data ?? Data())
                 for photo in photos {
                     self?.addPhoto(photo)
                 }
