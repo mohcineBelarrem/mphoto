@@ -21,7 +21,8 @@ private let reuseIdentifier = "Cell"
 
 class AlbumsCollectionViewController: UICollectionViewController {
     
-    var selectedPhoto : Photo!
+    var selectedAlbum : [Photo]!
+    var selectedTitle : String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,15 +68,21 @@ class AlbumsCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        selectedPhoto = PhotoManager.shared.photos("\(indexPath.section)")[indexPath.row]
-        self.performSegue(withIdentifier: "showPhotoDetail", sender: nil)
+        selectedAlbum = PhotoManager.shared.photos("\(indexPath.section)")
+        
+        let albumID = PhotoManager.shared.albums()[indexPath.section]
+        selectedTitle = "Album \(albumID)"
+        
+        self.performSegue(withIdentifier: "showPhotos", sender: nil)
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showPhotoDetail" {
-            let dest = segue.destination as! PhotoDetailViewController
-            dest.photo = selectedPhoto
+
+        if segue.identifier == "showPhotos" {
+            let dest = segue.destination as! PhotosCollectionViewController
+            dest.album = selectedAlbum
+            dest.albumTitle = selectedTitle
         }
     }
     
