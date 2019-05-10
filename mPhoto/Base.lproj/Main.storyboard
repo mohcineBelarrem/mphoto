@@ -47,10 +47,15 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1jl-oy-GCI">
+                                            <rect key="frame" x="76" y="94" width="20" height="20"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                 </view>
                                 <constraints>
                                     <constraint firstAttribute="bottomMargin" secondItem="pL2-Xw-RHc" secondAttribute="bottom" constant="8" id="D3s-lc-bmq"/>
+                                    <constraint firstItem="1jl-oy-GCI" firstAttribute="centerX" secondItem="7W2-09-qnm" secondAttribute="centerX" id="Ljm-ic-wec"/>
+                                    <constraint firstItem="1jl-oy-GCI" firstAttribute="centerY" secondItem="7W2-09-qnm" secondAttribute="centerY" id="Mde-JM-pO5"/>
                                     <constraint firstItem="QUw-UM-Hv8" firstAttribute="leading" secondItem="7W2-09-qnm" secondAttribute="leadingMargin" constant="8" id="Vaf-Tn-Jnw"/>
                                     <constraint firstItem="pL2-Xw-RHc" firstAttribute="top" secondItem="QUw-UM-Hv8" secondAttribute="bottom" constant="8" id="YyC-Ex-m4j"/>
                                     <constraint firstAttribute="trailing" secondItem="4RV-hT-1gB" secondAttribute="trailing" constant="8" id="aAO-33-dA9"/>
@@ -62,6 +67,7 @@
                                     <constraint firstAttribute="trailingMargin" secondItem="QUw-UM-Hv8" secondAttribute="trailing" constant="8" id="v0G-1f-BMX"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="activityIndicator" destination="1jl-oy-GCI" id="Dgp-fO-ckJ"/>
                                     <outlet property="countLabel" destination="pL2-Xw-RHc" id="RD6-ts-3i2"/>
                                     <outlet property="imageView" destination="4RV-hT-1gB" id="njB-Rl-rt5"/>
                                     <outlet property="titleLabel" destination="QUw-UM-Hv8" id="ZvF-DD-QN7"/>
