@@ -25,6 +25,10 @@ class AlbumsCollectionViewController: UICollectionViewController {
     var selectedAlbum : [Photo]!
     var selectedTitle : String!
     
+    @IBAction func refresh(_ sender: Any) {
+        PhotoManager.shared.getPhotosData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
