@@ -13,16 +13,21 @@ class PhotoDetailViewController: UIViewController {
     @IBOutlet weak var photoDetailLabel: UILabel!
     @IBOutlet weak var detailViewHeightConstraint: NSLayoutConstraint!
     
-    public var photo : Photo!
+    //public var photo : Photo!
+    
+    public var album : [Photo]!
+    public var currentIndex : Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         photoDetailLabel.isHidden = true
 
+        let photo = album[currentIndex]
+        
         self.title = "\(photo.id)"
         
-        let url = URL(string:self.photo.url)
+        let url = URL(string:photo.url)
         
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture(gesture:)))
         swipeUp.direction = .up
@@ -39,7 +44,7 @@ class PhotoDetailViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     self.imageVIew.image = image
-                    self.photoDetailLabel.text = self.photo.title
+                    self.photoDetailLabel.text = photo.title
                 }
             }
             

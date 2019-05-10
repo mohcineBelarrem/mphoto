@@ -20,7 +20,7 @@ class PhotosCollectionViewController: UICollectionViewController {
 
     public var album : [Photo]!
     public var albumTitle : String!
-    var selectedPhoto : Photo!
+    var selectedIndex : Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,7 @@ class PhotosCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        selectedPhoto = album[indexPath.row]
+        selectedIndex = indexPath.row
         self.performSegue(withIdentifier: "showPhotoDetail", sender: nil)
     
     }
@@ -69,7 +69,8 @@ class PhotosCollectionViewController: UICollectionViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
                 if segue.identifier == "showPhotoDetail" {
                     let dest = segue.destination as! PhotoDetailViewController
-                    dest.photo = selectedPhoto
+                    dest.currentIndex = selectedIndex
+                    dest.album = album
                 }
        
     }
