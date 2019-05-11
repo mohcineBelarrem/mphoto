@@ -20,7 +20,7 @@ class AlbumCollectionCell : UICollectionViewCell {
 
 private let reuseIdentifier = "Cell"
 
-class AlbumsCollectionViewController: UICollectionViewController {
+class AlbumsCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
     
     var selectedAlbum : [Photo]!
     var selectedTitle : String!
@@ -57,6 +57,10 @@ class AlbumsCollectionViewController: UICollectionViewController {
             cell.activityIndicator.isHidden = false
             cell.titleLabel.isHidden = true
             cell.countLabel.isHidden = true
+            
+            cell.imageView.layer.masksToBounds = true
+            cell.imageView.layer.cornerRadius = 10.0
+            //cell.backgroundColor = UIColor.red
         }
         
         DispatchQueue.global().async {
@@ -89,7 +93,6 @@ class AlbumsCollectionViewController: UICollectionViewController {
         
         let albumID =   PhotoManager.shared.albums()[indexPath.row]
         selectedAlbum = PhotoManager.shared.photos("\(albumID)")
-        
         selectedTitle = "Album \(albumID)"
         
         self.performSegue(withIdentifier: "showPhotos", sender: nil)
@@ -102,6 +105,7 @@ class AlbumsCollectionViewController: UICollectionViewController {
             let dest = segue.destination as! PhotosCollectionViewController
             dest.album = selectedAlbum
             dest.albumTitle = selectedTitle
+            dest.secondaryTitle = "\(selectedAlbum.count) photos"
         }
     }
     
@@ -110,6 +114,20 @@ class AlbumsCollectionViewController: UICollectionViewController {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: 125.0, height: 175.0)
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
     }
     
 }

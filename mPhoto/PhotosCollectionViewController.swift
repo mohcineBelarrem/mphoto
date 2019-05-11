@@ -17,16 +17,18 @@ class PhotoCollectionCell : UICollectionViewCell {
     
 }
 
-class PhotosCollectionViewController: UICollectionViewController {
+class PhotosCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
 
     public var album : [Photo]!
     public var albumTitle : String!
+    public var secondaryTitle : String!
     var selectedIndex : Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.contentInsetAdjustmentBehavior = .always
         navigationItem.title = albumTitle
+        navigationItem.prompt = secondaryTitle
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -85,5 +87,20 @@ class PhotosCollectionViewController: UICollectionViewController {
        
     }
     
+   
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
+        return CGSize(width: 75.0, height: 75.0)
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
+    
 }
