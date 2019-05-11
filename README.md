@@ -8,10 +8,10 @@ https://jsonplaceholder.typicode.com/photos
 
 https://raw.githubusercontent.com/mohcineBelarrem/photosdb/master/db.json
 
-Here's a demo of the app working :
+You can find a video of the app working in the assets directory.
 
-<figure class="video_container">
-  <video controls="true" allowfullscreen="true">
-    <source src="assets/record.mp4" type="video/mp4">
-  </video>
-</figure>
+
+Enjoy!
+
+
+Belarrem Mohcine
