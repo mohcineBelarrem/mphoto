@@ -25,6 +25,7 @@ class PhotosCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.contentInsetAdjustmentBehavior = .always
         navigationItem.title = albumTitle
     }
 
