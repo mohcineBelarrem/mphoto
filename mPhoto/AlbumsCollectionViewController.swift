@@ -25,14 +25,24 @@ class AlbumsCollectionViewController: UICollectionViewController,UICollectionVie
     var selectedAlbum : [Photo]!
     var selectedTitle : String!
     
-    @IBAction func refresh(_ sender: Any) {
+    var refreshControl : UIRefreshControl!
+    
+    @objc @IBAction func refresh(_ sender: Any) {
+        self.collectionView.reloadData()
         PhotoManager.shared.getPhotosData()
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.contentInsetAdjustmentBehavior = .always
+        
+        refreshControl = UIRefreshControl()
+        
+        collectionView.refreshControl = refreshControl
+        
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         
         NotificationCenter.default.addObserver(self, selector: #selector(dataReady), name:Notification.Name("dataReady") , object: nil)
     }
@@ -113,7 +123,9 @@ class AlbumsCollectionViewController: UICollectionViewController,UICollectionVie
         
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.refreshControl.endRefreshing()
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
